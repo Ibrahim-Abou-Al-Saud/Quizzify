@@ -1,0 +1,150 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.login-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  direction: ltr;
+}
+
+.login-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  transition: all 0.6s ease-in-out;
+  z-index: 1;
+  direction: ltr;
+}
+
+.login-right {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.90);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  transition: all 0.6s ease-in-out;
+  z-index: 2;
+  direction: ltr;
+}
+
+.login-wrapper.is-rtl .login-left {
+  left: 50%;
+  direction: rtl;
+}
+.login-wrapper.is-rtl .login-right {
+  left: 0;
+  direction: rtl;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.right-text {
+  margin: 0;
+  max-width: 90%;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  text-align: start;
+}
+
+.cardWithShadow {
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(3, 5, 8, 0.25);
+  border: none;
+  background: #ffffff;
+  width: 100%;
+}
+
+.boxed-auth {
+  width: 100%;
+  max-width: 400px;
+}
+
+.f-s-14 {
+  font-size: 14px;
+}
+.f-s-16 {
+  font-size: 16px;
+}
+
+.p-32 {
+  padding: 32px;
+}
+
+.m-t-8 {
+  margin-top: 8px;
+}
+.m-t-24 {
+  margin-top: 24px;
+}
+.m-t-30 {
+  margin-top: 30px;
+}
+.m-b-12 {
+  margin-bottom: 12px;
+}
+
+.or-border {
+  position: relative;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 1rem;
+}
+
+.or-border::before,
+.or-border::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 36%;
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+.or-border::before {
+  left: 0;
+}
+.or-border::after {
+  right: 0;
+}
+
+a[mat-flat-button].w-100 {
+  margin-top: 8px;
+  height: 44px;
+  border-radius: 10px;
+}
+
+::ng-deep .mdc-text-field__input::placeholder {
+  font-size: 12px !important;
+  opacity: 0.8;
+}
+::ng-deep .mdc-text-field {
+  border-radius: 10px;
+}
+
+.no-account {
+  cursor: pointer;
+}

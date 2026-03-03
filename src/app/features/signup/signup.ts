@@ -1,0 +1,65 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { Grid } from '../../shared/components/grid/grid';
+import { ToastrService } from 'ngx-toastr';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth-service';
+
+@Component({
+  selector: 'app-signup',
+  imports: [
+    Grid,
+    RouterLink,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+  ],
+  templateUrl: './signup.html',
+  styleUrl: './signup.css',
+})
+export class Signup implements OnInit {
+  hide = true;
+  year = new Date().getFullYear();
+  signupForm!: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    private toast: ToastrService,
+    private route: Router,
+    private auth: AuthService
+  ) {}
+  ngOnInit(): void {
+    this.signupForm = this.fb.group({
+      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(4)]],
+    });
+  }
+
+    onSubmit() {
+        this.auth.register(this.signupForm.value).subscribe({
+          next: (res) => {
+            this.toast.success('Registration successful! Please login to continue.', 'Success', {
+              timeOut: 5000,
+              positionClass: 'toast-top-center',
+            });
+            this.route.navigate(['/login']);
+          },
+          error: (err) => {
+            this.toast.error(err.error.message || 'Registration failed. Please try again.', 'Error', {
+              timeOut: 5000,
+              positionClass: 'toast-top-center',
+            });
+          },
+        });
+    }
+}
