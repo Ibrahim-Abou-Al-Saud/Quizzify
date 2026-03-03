@@ -27,14 +27,14 @@ export class Header implements OnInit {
     });
     if(this.isAdminLoggedIn) {
       this.links = [
-        {name: 'Dashboard', path: '/layout/dashboard'},
-        {name: 'Create Test', path: '/layout/tests'},
-        {name: 'Results', path: '/layout/results'},
+        {name: 'Dashboard', path: '/layout/admin/dashboard'},
+        {name: 'Create Test', path: '/layout/admin/tests'},
+        {name: 'Results', path: '/layout/admin/results'},
       ];
     } else {
       this.links = [
-        {name: 'Dashboard', path: '/layout/dashboard'},
-        {name: 'Results', path: '/layout/results'},
+        {name: 'Dashboard', path: '/layout/user/dashboard'},
+        {name: 'Results', path: '/layout/user/results'},
       ];
     }
   }
