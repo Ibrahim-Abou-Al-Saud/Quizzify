@@ -3,13 +3,9 @@ package com.abouals3ood.quizzify_server.entities;
 import com.abouals3ood.quizzify_server.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Data
-@Getter
-@Setter
 @Table(name = "users")
 public class User {
 
