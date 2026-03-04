@@ -29,7 +29,7 @@ public class UserController {
         if (createdUser == null) {
             return new ResponseEntity<>("User not created, Try again later.", HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>(createdUser, HttpStatus.OK);
+        return ResponseEntity.ok(createdUser);
     }
 
     @PostMapping("/login")
@@ -38,6 +38,6 @@ public class UserController {
         if (loggedInUser == null) {
             return new ResponseEntity<>("Invalid Credentials", HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>(loggedInUser, HttpStatus.OK);
+        return ResponseEntity.ok(loggedInUser);
     }
 }

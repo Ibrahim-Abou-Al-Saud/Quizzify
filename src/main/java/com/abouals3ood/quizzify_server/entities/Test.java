@@ -1,5 +1,6 @@
 package com.abouals3ood.quizzify_server.entities;
 
+import com.abouals3ood.quizzify_server.dto.TestDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,4 +20,13 @@ public class Test {
     private String description;
 
     private Long duration;
+
+    public TestDTO getDto() {
+        TestDTO testDTO = new TestDTO();
+        testDTO.setId(id);
+        testDTO.setTitle(title);
+        testDTO.setDescription(description);
+        testDTO.setDuration(duration);
+        return testDTO;
+    }
 }
