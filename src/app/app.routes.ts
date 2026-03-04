@@ -19,4 +19,5 @@ export const routes: Routes = [
       {path: '**', redirectTo: 'not-found', pathMatch: 'full'}
   ]},
   {path: '', redirectTo: 'layout/home', pathMatch: 'full'},
+  {path: '**', redirectTo: 'layout/not-found', pathMatch: 'full'}
 ];
