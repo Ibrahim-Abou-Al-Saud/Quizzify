@@ -10,6 +10,7 @@ import { Grid } from '../../shared/components/grid/grid';
 import { ToastrService } from 'ngx-toastr';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth-service';
+import { SpinnerService } from '../../core/services/spinner-service';
 
 @Component({
   selector: 'app-signup',
@@ -35,7 +36,8 @@ export class Signup implements OnInit {
     private fb: FormBuilder,
     private toast: ToastrService,
     private route: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private spinner: SpinnerService,
   ) {}
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -45,21 +47,24 @@ export class Signup implements OnInit {
     });
   }
 
-    onSubmit() {
-        this.auth.register(this.signupForm.value).subscribe({
-          next: (res) => {
-            this.toast.success('Registration successful! Please login to continue.', 'Success', {
-              timeOut: 5000,
-              positionClass: 'toast-top-center',
-            });
-            this.route.navigate(['/login']);
-          },
-          error: (err) => {
-            this.toast.error(err.error.message || 'Registration failed. Please try again.', 'Error', {
-              timeOut: 5000,
-              positionClass: 'toast-top-center',
-            });
-          },
+  onSubmit() {
+    this.spinner.show();
+    this.auth.register(this.signupForm.value).subscribe({
+      next: (res) => {
+        this.spinner.hide();
+        this.toast.success('Registration successful! Please login to continue.', 'Success', {
+          timeOut: 5000,
+          positionClass: 'toast-top-center',
         });
-    }
+        this.route.navigate(['/login']);
+      },
+      error: (err) => {
+        this.toast.error(err.error.message || 'Registration failed. Please try again.', 'Error', {
+          timeOut: 5000,
+          positionClass: 'toast-top-center',
+        });
+        this.spinner.hide();
+      },
+    });
+  }
 }

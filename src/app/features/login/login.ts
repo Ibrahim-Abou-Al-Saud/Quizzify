@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { UserStorage } from '../../core/services/user-storage';
+import { SpinnerService } from '../../core/services/spinner-service';
 
 @Component({
   selector: 'app-login',
@@ -37,6 +38,7 @@ export class Login implements OnInit {
     private toast: ToastrService,
     private route: Router,
     private auth: AuthService,
+    private spinner: SpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +49,10 @@ export class Login implements OnInit {
   }
 
   onSubmit() {
+    this.spinner.show();
     this.auth.login(this.loginForm.value).subscribe({
       next: (res) => {
+        this.spinner.hide();
         this.toast.success('Login successful!', 'Success', {
           timeOut: 5000,
           positionClass: 'toast-top-center',
@@ -65,6 +69,7 @@ export class Login implements OnInit {
           timeOut: 5000,
           positionClass: 'toast-top-center',
         });
+        this.spinner.hide();
       },
     });
   }

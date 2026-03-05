@@ -1,0 +1,56 @@
+.create-test-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  min-height: calc(100vh - 100px);
+  width: 70%;
+  margin: 100px auto;
+}
+
+.create-test-card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: white;
+}
+
+mat-card-header {
+  margin-bottom: 24px;
+}
+
+mat-card-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.test-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+button[type="submit"] {
+  padding: 8px 32px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+}
+
+mat-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #555;
+}

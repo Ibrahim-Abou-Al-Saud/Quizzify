@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStorage } from '../../../core/services/user-storage';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 interface Link {
   name: string;
@@ -18,7 +19,7 @@ export class Header implements OnInit {
   isAdminLoggedIn: boolean = UserStorage.isAdminLoggedIn();
   links : Link[] = [];
 
-  constructor(private route: Router) {}
+  constructor(private route: Router, private toast: ToastrService) {}
 
   ngOnInit(): void {
     this.route.events.subscribe(() => {
@@ -28,7 +29,7 @@ export class Header implements OnInit {
     if(this.isAdminLoggedIn) {
       this.links = [
         {name: 'Dashboard', path: '/layout/admin/dashboard'},
-        {name: 'Create Test', path: '/layout/admin/tests'},
+        {name: 'Create Test', path: '/layout/admin/create-test'},
         {name: 'Results', path: '/layout/admin/results'},
       ];
     } else {
@@ -41,6 +42,10 @@ export class Header implements OnInit {
 
   logout() {
     UserStorage.signOut();
+    this.toast.success('Logged out successfully!', 'Success', {
+      timeOut: 3000,
+      positionClass: 'toast-top-center',
+    });
     this.route.navigate(['/login']);
   }
 }
