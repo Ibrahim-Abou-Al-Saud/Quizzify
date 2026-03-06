@@ -1,0 +1,74 @@
+<div class="add-question-container">
+  <div class="form-wrapper">
+    <h2 class="form-title">Add New Question</h2>
+
+    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+      <!-- Question -->
+      <div class="form-group">
+        <label for="question">Question</label>
+        <textarea id="question" formControlName="question" rows="3" placeholder="Enter the question text here..."></textarea>
+        <div class="error-msg" *ngIf="questionForm.get('question')?.touched && questionForm.get('question')?.invalid">
+          Question is required.
+        </div>
+      </div>
+
+      <div class="options-grid">
+        <!-- Option A -->
+        <div class="form-group">
+          <label for="optionA">Option A</label>
+          <input type="text" id="optionA" formControlName="optionA" placeholder="Enter option A">
+          <div class="error-msg" *ngIf="questionForm.get('optionA')?.touched && questionForm.get('optionA')?.invalid">
+            Option A is required.
+          </div>
+        </div>
+
+        <!-- Option B -->
+        <div class="form-group">
+          <label for="optionB">Option B</label>
+          <input type="text" id="optionB" formControlName="optionB" placeholder="Enter option B">
+          <div class="error-msg" *ngIf="questionForm.get('optionB')?.touched && questionForm.get('optionB')?.invalid">
+            Option B is required.
+          </div>
+        </div>
+
+        <!-- Option C -->
+        <div class="form-group">
+          <label for="optionC">Option C</label>
+          <input type="text" id="optionC" formControlName="optionC" placeholder="Enter option C">
+          <div class="error-msg" *ngIf="questionForm.get('optionC')?.touched && questionForm.get('optionC')?.invalid">
+            Option C is required.
+          </div>
+        </div>
+
+        <!-- Option D -->
+        <div class="form-group">
+          <label for="optionD">Option D</label>
+          <input type="text" id="optionD" formControlName="optionD" placeholder="Enter option D">
+          <div class="error-msg" *ngIf="questionForm.get('optionD')?.touched && questionForm.get('optionD')?.invalid">
+            Option D is required.
+          </div>
+        </div>
+      </div>
+
+      <!-- Correct Answer -->
+      <div class="form-group">
+        <label for="answer">Correct Answer</label>
+        <select id="answer" formControlName="answer">
+          <option [ngValue]="null" disabled>Select correct Answer</option>
+          <option value="A">Option A</option>
+          <option value="B">Option B</option>
+          <option value="C">Option C</option>
+          <option value="D">Option D</option>
+        </select>
+        <div class="error-msg" *ngIf="questionForm.get('answer')?.touched && questionForm.get('answer')?.invalid">
+          Correct answer is required.
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <button type="submit" class="submit-btn" [disabled]="questionForm.invalid">Add Question</button>
+      </div>
+    </form>
+  </div>
+</div>

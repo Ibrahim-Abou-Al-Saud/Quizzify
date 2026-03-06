@@ -19,6 +19,10 @@ export class CreateTestService {
     return this.api.add(`${environment.ServerandPort}/test`, testData);
   }
 
+  addQuestion(questionData: any) {
+    return this.api.add(`${environment.ServerandPort}/test/question`, questionData);
+  }
+
   getAllTests() {
     return this.api.get(`${environment.ServerandPort}/test`);
   }

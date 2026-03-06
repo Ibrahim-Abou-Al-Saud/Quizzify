@@ -2,11 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px 20px;
+  padding: 20px;
   min-height: calc(100vh - 100px);
   width: 100%;
   max-width: 60%;
-  margin: 40px auto;
+  margin: 30px auto;
   box-sizing: border-box;
 }
 

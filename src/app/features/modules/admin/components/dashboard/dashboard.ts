@@ -41,13 +41,13 @@ export class Dashboard implements OnInit {
     this.isLoading = true;
     this.createTestService.getAllTests().subscribe({
       next: (res: Test[]) => {
-        this.spinner.hide();
         this.isLoading = false;
         this.tests = res;
         this.toast.success('Tests fetched successfully!', 'Success', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
+        this.spinner.hide();
       },
       error: (err: any) => {
         console.error('Error fetching tests:', err);
