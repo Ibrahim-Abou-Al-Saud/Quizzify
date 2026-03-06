@@ -5,6 +5,7 @@ import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from '@angular/m
 import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { SpinnerService } from '../../../../../core/services/spinner-service';
 import { CreateTestService } from '../../services/create-test-service';
 import { ToastrService } from 'ngx-toastr';
@@ -22,6 +23,7 @@ import { ToastrService } from 'ngx-toastr';
     MatError,
     MatInput,
     MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule,
   ],
   templateUrl: './create-test.html',
@@ -39,7 +41,7 @@ export class CreateTest implements OnInit {
   ngOnInit(): void {
     this.testForm = this.fb.group({
       title: [null, [Validators.required, Validators.minLength(3)]],
-      duration: [null, [Validators.required]],
+      duration: [null, [Validators.required, Validators.min(1)]],
       description: [null, [Validators.required]],
     });
   }
