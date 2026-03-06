@@ -16,6 +16,10 @@ export class CreateTestService {
   constructor(private api: ApiService) {}
 
   addTest(testData: Test) {
-    return this.api.add(`${environment.ServerandPort}/test/create`, testData);
+    return this.api.add(`${environment.ServerandPort}/test`, testData);
+  }
+
+  getAllTests() {
+    return this.api.get(`${environment.ServerandPort}/test`);
   }
 }

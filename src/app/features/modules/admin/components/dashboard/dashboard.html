@@ -1,1 +1,32 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h2>Available Tests</h2>
+    @if (isAdminLoggedIn) {
+      <button class="btn btn-primary" title="Create a new test" routerLink="/layout/admin/create-test">+ Create New Test</button>
+    }
+  </div>
+
+  <div class="test-grid">
+    @for (test of tests; track test.id) {
+      <div class="test-card">
+        <div class="card-header">
+          <h3>{{ test.title }}</h3>
+          <span class="duration-badge">{{ test.duration }} mins</span>
+        </div>
+        <div class="card-body">
+          <p>{{ test.description }}</p>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-outline"><i class="bi bi-pencil me-2"></i> Edit</button>
+          <button class="btn btn-danger"><i class="bi bi-trash me-2"></i> Delete</button>
+        </div>
+      </div>
+    } @empty {
+      @if (!isLoading) {
+        <div class="empty-state">
+          <p>No tests available at the moment. Create one to get started!</p>
+        </div>
+      }
+    }
+  </div>
+</div>

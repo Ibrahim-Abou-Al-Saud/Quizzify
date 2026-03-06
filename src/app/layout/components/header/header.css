@@ -14,3 +14,9 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.nav-links a.active-link {
+  color: #3182ce;
+  border-bottom: 2px solid #3182ce;
+  padding-bottom: 4px;
+}
