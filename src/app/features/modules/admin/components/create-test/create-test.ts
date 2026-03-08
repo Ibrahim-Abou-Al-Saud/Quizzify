@@ -47,25 +47,23 @@ export class CreateTest implements OnInit {
   }
 
   onSubmit() {
-    if (this.testForm.valid) {
-      this.spinner.show();
-      this.test.addTest(this.testForm.value).subscribe({
-        next: (res) => {
-          this.spinner.hide();
-          this.toast.success('Test created successfully!', 'Success', {
-            timeOut: 5000,
-            positionClass: 'toast-top-center',
-          });
-          this.testForm.reset();
-        },
-        error: (err) => {
-          this.spinner.hide();
-          this.toast.error('Failed to create test. Please try again.', 'Error', {
-            timeOut: 5000,
-            positionClass: 'toast-top-center',
-          });
-        },
-      });
-    }
+    this.spinner.show();
+    this.test.addTest(this.testForm.value).subscribe({
+      next: (res) => {
+        this.spinner.hide();
+        this.toast.success('Test created successfully!', 'Success', {
+          timeOut: 5000,
+          positionClass: 'toast-top-center',
+        });
+        this.testForm.reset();
+      },
+      error: (err) => {
+        this.spinner.hide();
+        this.toast.error('Failed to create test. Please try again.', 'Error', {
+          timeOut: 5000,
+          positionClass: 'toast-top-center',
+        });
+      },
+    });
   }
 }

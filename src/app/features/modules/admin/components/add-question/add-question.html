@@ -17,36 +17,44 @@
         <div class="form-group">
           <label for="optionA">Option A</label>
           <input type="text" id="optionA" formControlName="optionA" placeholder="Enter option A">
-          <div class="error-msg" *ngIf="questionForm.get('optionA')?.touched && questionForm.get('optionA')?.invalid">
-            Option A is required.
-          </div>
+          @if (questionForm.get('optionA')?.touched && questionForm.get('optionA')?.invalid) {
+            <div class="error-msg">
+              Option A is required.
+            </div>
+          }
         </div>
 
         <!-- Option B -->
         <div class="form-group">
           <label for="optionB">Option B</label>
           <input type="text" id="optionB" formControlName="optionB" placeholder="Enter option B">
-          <div class="error-msg" *ngIf="questionForm.get('optionB')?.touched && questionForm.get('optionB')?.invalid">
-            Option B is required.
-          </div>
+          @if (questionForm.get('optionB')?.touched && questionForm.get('optionB')?.invalid) {
+            <div class="error-msg">
+              Option B is required.
+            </div>
+          }
         </div>
 
         <!-- Option C -->
         <div class="form-group">
           <label for="optionC">Option C</label>
           <input type="text" id="optionC" formControlName="optionC" placeholder="Enter option C">
-          <div class="error-msg" *ngIf="questionForm.get('optionC')?.touched && questionForm.get('optionC')?.invalid">
-            Option C is required.
-          </div>
+          @if (questionForm.get('optionC')?.touched && questionForm.get('optionC')?.invalid) {
+            <div class="error-msg">
+              Option C is required.
+            </div>
+          }
         </div>
 
         <!-- Option D -->
         <div class="form-group">
           <label for="optionD">Option D</label>
           <input type="text" id="optionD" formControlName="optionD" placeholder="Enter option D">
-          <div class="error-msg" *ngIf="questionForm.get('optionD')?.touched && questionForm.get('optionD')?.invalid">
-            Option D is required.
-          </div>
+          @if (questionForm.get('optionD')?.touched && questionForm.get('optionD')?.invalid) {
+            <div class="error-msg">
+              Option D is required.
+            </div>
+          }
         </div>
       </div>
 
@@ -60,9 +68,11 @@
           <option value="C">Option C</option>
           <option value="D">Option D</option>
         </select>
-        <div class="error-msg" *ngIf="questionForm.get('answer')?.touched && questionForm.get('answer')?.invalid">
-          Correct answer is required.
-        </div>
+        @if (questionForm.get('answer')?.touched && questionForm.get('answer')?.invalid) {
+          <div class="error-msg">
+            Correct answer is required.
+          </div>
+        }
       </div>
 
       <!-- Submit Button -->

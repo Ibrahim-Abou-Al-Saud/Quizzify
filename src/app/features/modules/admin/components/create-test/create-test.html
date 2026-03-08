@@ -15,7 +15,7 @@
             <mat-label>Test Name</mat-label>
             <mat-icon matPrefix class="prefix-icon">title</mat-icon>
             <input matInput formControlName="title" required placeholder="e.g. Angular Basics" />
-            @if (testForm.get('title')?.hasError('required')) {
+            @if (testForm.get('title')?.touched && testForm.get('title')?.hasError('required')) {
               <mat-error>Test Name is required</mat-error>
             }
             @if (testForm.get('title')?.hasError('minlength')) {
@@ -24,7 +24,7 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="half-width">
-            <mat-label>Duration (in minutes)</mat-label>
+            <mat-label>Duration for each question (in minutes)</mat-label>
             <mat-icon matPrefix class="prefix-icon">timer</mat-icon>
             <input
               matInput
@@ -34,7 +34,7 @@
               placeholder="e.g. 60"
               min="1"
             />
-            @if (testForm.get('duration')?.hasError('required')) {
+            @if (testForm.get('duration')?.touched && testForm.get('duration')?.hasError('required')) {
               <mat-error>Duration is required</mat-error>
             }
             @if (testForm.get('duration')?.hasError('min')) {
@@ -53,7 +53,7 @@
             required
             placeholder="Provide a detailed description of what the test covers..."
           ></textarea>
-          @if (testForm.get('description')?.hasError('required')) {
+          @if (testForm.get('description')?.touched && testForm.get('description')?.hasError('required')) {
             <mat-error>Description is required</mat-error>
           }
         </mat-form-field>

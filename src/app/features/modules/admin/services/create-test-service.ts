@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../../core/services/api-service';
 import { environment } from '../../../../../environments/envrionment';
-
-interface Test {
-  title: string;
-  duration: number;
-  description: string;
-}
+import { Test } from '../../../../shared/models/Test';
 
 @Injectable({
   providedIn: 'root',

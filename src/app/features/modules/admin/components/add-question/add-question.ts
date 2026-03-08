@@ -50,7 +50,6 @@ export class AddQuestion implements OnInit {
               positionClass: 'toast-top-center',
           });
           this.questionForm.reset();
-          this.route.navigate(['layout/admin/dashboard']);
         },
         error: (err) => {
           this.spinner.hide();

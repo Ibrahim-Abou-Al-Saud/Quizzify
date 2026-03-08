@@ -59,7 +59,8 @@ export class Signup implements OnInit {
         this.route.navigate(['/login']);
       },
       error: (err) => {
-        this.toast.error(err.error.message || 'Registration failed. Please try again.', 'Error', {
+        console.log('Registration error:', err.error);
+        this.toast.error(err.error || 'Registration failed. Please try again.', 'Error', {
           timeOut: 5000,
           positionClass: 'toast-top-center',
         });

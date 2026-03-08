@@ -3,16 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SpinnerService } from '../../../../../core/services/spinner-service';
 import { ToastrService } from 'ngx-toastr';
 import { CreateTestService } from '../../services/create-test-service';
-
-interface Question {
-  id: number;
-  question: string;
-  optionA: string;
-  optionB: string;
-  optionC: string;
-  optionD: string;
-  answer: string;
-}
+import { Question } from '../../../../../shared/models/Question';
 
 @Component({
   selector: 'app-view-test',

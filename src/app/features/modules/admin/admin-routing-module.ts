@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Dashboard } from './components/dashboard/dashboard';
+import { Dashboard } from '../../../shared/components/dashboard/dashboard';
 import { CreateTest } from './components/create-test/create-test';
 import { AddQuestion } from './components/add-question/add-question';
 import { ViewTest } from './components/view-test/view-test';

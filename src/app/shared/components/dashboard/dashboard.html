@@ -1,0 +1,55 @@
+<div class="dashboard-container">
+  <div class="dashboard-header">
+    <h2>Available Tests</h2>
+    @if (isAdminLoggedIn) {
+      <button
+        class="btn btn-primary"
+        title="Create a new test"
+        routerLink="/layout/admin/create-test"
+      >
+        + Create New Test
+      </button>
+    }
+  </div>
+
+  <div class="test-grid">
+    @for (test of tests; track test.id) {
+      <div class="test-card">
+        <div class="card-header">
+          <h3>{{ test.title }}</h3>
+          <span class="duration-badge">{{ test.duration }} mins</span>
+        </div>
+        <div class="card-body">
+          <p>{{ test.description }}</p>
+        </div>
+        <div class="card-actions">
+          <button
+            class="btn btn-action btn-view"
+            [title]="buttonText"
+            [routerLink]="buttonLink + '/' + test.id"
+          >
+            <i [class]="buttonIcon"></i> {{ buttonText }}
+          </button>
+          @if (isAdminLoggedIn) {
+            <button
+              class="btn btn-action btn-add"
+              title="Add Question"
+              routerLink="/layout/admin/add-question/{{ test.id }}"
+            >
+              <i class="bi bi-plus-circle"></i> Add Qs
+            </button>
+            <button class="btn btn-action btn-delete" title="Delete Test">
+              <i class="bi bi-trash"></i> Delete
+            </button>
+          }
+        </div>
+      </div>
+    } @empty {
+      @if (!isLoading) {
+        <div class="empty-state">
+          <p>No tests available at the moment. Create one to get started!</p>
+        </div>
+      }
+    }
+  </div>
+</div>

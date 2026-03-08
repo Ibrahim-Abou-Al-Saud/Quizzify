@@ -1,16 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { UserStorage } from '../../../../../core/services/user-storage';
-import { CreateTestService } from '../../services/create-test-service';
-import { SpinnerService } from '../../../../../core/services/spinner-service';
+import { UserStorage } from '../../../core/services/user-storage';
+import { CreateTestService } from '../../../features/modules/admin/services/create-test-service';
+import { SpinnerService } from '../../../core/services/spinner-service';
 import { ToastrService } from 'ngx-toastr';
-
-interface Test {
-  id: number;
-  title: string;
-  duration: number;
-  description: string;
-}
+import { Test } from '../../models/Test';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,6 +23,9 @@ export class Dashboard implements OnInit {
   ) {}
   tests: Test[] = [];
   isLoading: boolean = true;
+  buttonText: string = this.isAdminLoggedIn ? 'View Test' : 'Take Test';
+  buttonIcon: string = this.isAdminLoggedIn ? 'bi bi-eye' : 'bi bi-play';
+  buttonLink: string = this.isAdminLoggedIn ? '/layout/admin/view-test' : '/layout/user/take-test';
 
   ngOnInit(): void {
     this.getAllTests();
