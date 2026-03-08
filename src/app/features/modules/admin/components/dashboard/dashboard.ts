@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { UserStorage } from '../../../../../core/services/user-storage';
 import { CreateTestService } from '../../services/create-test-service';
@@ -25,15 +25,16 @@ export class Dashboard implements OnInit {
     private createTestService: CreateTestService,
     private spinner: SpinnerService,
     private toast: ToastrService,
+    private cdr: ChangeDetectorRef,
   ) {}
   tests: Test[] = [];
   isLoading: boolean = true;
 
   ngOnInit(): void {
+    this.getAllTests();
     this.route.events.subscribe(() => {
       this.isAdminLoggedIn = UserStorage.isAdminLoggedIn();
     });
-    this.getAllTests();
   }
 
   getAllTests() {
@@ -43,11 +44,12 @@ export class Dashboard implements OnInit {
       next: (res: Test[]) => {
         this.isLoading = false;
         this.tests = res;
+        this.spinner.hide();
+        this.cdr.detectChanges();
         this.toast.success('Tests fetched successfully!', 'Success', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-        this.spinner.hide();
       },
       error: (err: any) => {
         console.error('Error fetching tests:', err);

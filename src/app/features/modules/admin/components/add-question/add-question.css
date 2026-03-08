@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  background-color: #f4f6f9;
+  background-color: #ffffff;
   min-height: calc(100vh - 65px);
 }
 
@@ -46,7 +46,7 @@
   font-size: 1rem;
   color: #2c3e50;
   transition: border-color 0.3s ease;
-  background-color: #f9fbfc;
+  background-color: #d7d7d767;
 }
 
 .form-group input:focus,

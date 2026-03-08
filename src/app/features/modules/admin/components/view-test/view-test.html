@@ -1,0 +1,45 @@
+<div class="test-container">
+  <div class="test-header">
+    <h1>Test Questions</h1>
+    <span class="question-count">{{ questions.length }} Questions</span>
+  </div>
+
+  <div class="questions-list">
+    @for (question of questions; track question.id; let i = $index) {
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-number">Question {{ i + 1 }}</span>
+          <h3 class="question-text">{{ question.question }}</h3>
+        </div>
+
+        <div class="options-grid">
+          <div class="option" [class.correct-option]="question.answer === 'A'">
+            <span class="option-label">A</span>
+            <span class="option-value">{{ question.optionA }}</span>
+          </div>
+          <div class="option" [class.correct-option]="question.answer === 'B'">
+            <span class="option-label">B</span>
+            <span class="option-value">{{ question.optionB }}</span>
+          </div>
+          <div class="option" [class.correct-option]="question.answer === 'C'">
+            <span class="option-label">C</span>
+            <span class="option-value">{{ question.optionC }}</span>
+          </div>
+          <div class="option" [class.correct-option]="question.answer === 'D'">
+            <span class="option-label">D</span>
+            <span class="option-value">{{ question.optionD }}</span>
+          </div>
+        </div>
+
+        <div class="correct-answer-section">
+          <span class="correct-indicator">✓</span>
+          <p><strong>Correct Answer:</strong> Option {{ question.answer }}</p>
+        </div>
+      </div>
+    } @empty {
+      <div class="no-questions">
+        <p>No questions found for this test.</p>
+      </div>
+    }
+  </div>
+</div>

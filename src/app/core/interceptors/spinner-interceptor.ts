@@ -1,6 +1,6 @@
-import { HttpInterceptorFn, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 import { SpinnerService } from '../services/spinner-service';
 
 export const spinnerInterceptor: HttpInterceptorFn = (req, next) => {
@@ -24,17 +24,6 @@ export const spinnerInterceptor: HttpInterceptorFn = (req, next) => {
   spinner.show();
 
   return next(sanitizedReq).pipe(
-    tap({
-      next: (event) => {
-        if (event instanceof HttpResponse) {
-          spinner.hide();
-        }
-      },
-      error: (err) => {
-        if (err instanceof HttpErrorResponse) {
-          spinner.hide();
-        }
-      },
-    }),
+    finalize(() => spinner.hide())
   );
 };

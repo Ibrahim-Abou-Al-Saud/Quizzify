@@ -12,7 +12,6 @@ interface Test {
   providedIn: 'root',
 })
 export class CreateTestService {
-
   constructor(private api: ApiService) {}
 
   addTest(testData: Test) {
@@ -25,5 +24,9 @@ export class CreateTestService {
 
   getAllTests() {
     return this.api.get(`${environment.ServerandPort}/test`);
+  }
+
+  getTestQuestions(id: number) {
+    return this.api.get(`${environment.ServerandPort}/test/${id}`);
   }
 }
