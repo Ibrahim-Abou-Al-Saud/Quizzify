@@ -7,3 +7,4 @@
 
         :: Quizzify Application ::   (v${application.version})
         :: Spring Boot ::            (v${spring-boot.version})
+=================================================================================================================
