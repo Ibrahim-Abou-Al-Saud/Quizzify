@@ -18,7 +18,7 @@ public class Test {
 
     private String description;
 
-    private Long duration;
+    private float duration;
 
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
     private List<Question> questions;

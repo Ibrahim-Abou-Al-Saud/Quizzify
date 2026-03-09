@@ -11,5 +11,5 @@ public class TestDTO {
 
     private String description;
 
-    private Long duration;
+    private float duration;
 }
