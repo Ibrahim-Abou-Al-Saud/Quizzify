@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
-import { CreateTestService } from '../../services/create-test-service';
 import { SpinnerService } from '../../../../../core/services/spinner-service';
 import { ToastrService } from 'ngx-toastr';
 import { TestResult } from '../../../../../shared/models/Test';
+import { TestService } from '../../services/test-service';
 
 @Component({
   selector: 'app-view-results',
@@ -17,13 +17,13 @@ import { TestResult } from '../../../../../shared/models/Test';
 export class ViewResults implements OnInit, AfterViewInit {
   results: TestResult[] = [];
   dataSource = new MatTableDataSource<TestResult>();
-  displayedColumns: string[] = ['testName', 'userName', 'totalQuestions', 'correctAnswers', 'percentage', 'status'];
+  displayedColumns: string[] = ['testName', 'totalQuestions', 'correctAnswers', 'percentage', 'status'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private testService: CreateTestService,
+    private testService: TestService,
     private spinner: SpinnerService,
     private toast: ToastrService,
   ) {}
@@ -39,7 +39,7 @@ export class ViewResults implements OnInit, AfterViewInit {
 
   loadResults() {
     this.spinner.show();
-    this.testService.getAllResults().subscribe({
+    this.testService.getUserResults().subscribe({
       next: (res) => {
         this.results = res;
         this.dataSource.data = res;
