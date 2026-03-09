@@ -1,6 +1,7 @@
 package com.abouals3ood.quizzify_server.controller;
 
 import com.abouals3ood.quizzify_server.dto.QuestionDTO;
+import com.abouals3ood.quizzify_server.dto.SubmitedTestDTO;
 import com.abouals3ood.quizzify_server.dto.TestDTO;
 import com.abouals3ood.quizzify_server.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,24 @@ public class TestController {
     public ResponseEntity<?> getAllQuestionsByTestId(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(testService.getAllQuestionsByTestId(id));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PostMapping("/submit")
+    public ResponseEntity<?> submitTest(@RequestBody SubmitedTestDTO submitedTestDTO) {
+        try {
+            return ResponseEntity.ok(testService.submitTest(submitedTestDTO));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/results")
+    public ResponseEntity<?> getAllTestResults() {
+        try {
+            return ResponseEntity.ok(testService.getAllTestResults());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
