@@ -52,18 +52,12 @@ export class Signup implements OnInit {
     this.auth.register(this.signupForm.value).subscribe({
       next: (res) => {
         this.spinner.hide();
-        this.toast.success('Registration successful! Please login to continue.', 'Success', {
-          timeOut: 5000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.success('Registration successful! Please login to continue.');
         this.route.navigate(['/login']);
       },
       error: (err) => {
         console.log('Registration error:', err.error);
-        this.toast.error(err.error || 'Registration failed. Please try again.', 'Error', {
-          timeOut: 5000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.error(err.error || 'Registration failed. Please try again.');
         this.spinner.hide();
       },
     });

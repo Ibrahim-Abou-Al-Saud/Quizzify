@@ -46,17 +46,11 @@ export class ViewResults implements OnInit, AfterViewInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         console.log(this.results);
-        this.toast.success('Results loaded successfully', 'Success', {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.success('Results loaded successfully');
         this.spinner.hide();
       },
       error: (err) => {
-        this.toast.error('Failed to load results', 'Error', {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.error('Failed to load results');
         this.spinner.hide();
       },
     });

@@ -28,4 +28,8 @@ export class CreateTestService {
   getAllResults() {
     return this.api.get(`${environment.ServerandPort}/test/results`);
   }
+
+  deleteTest(id: number) {
+    return this.api.delete(`${environment.ServerandPort}/test/${id}`);
+  }
 }

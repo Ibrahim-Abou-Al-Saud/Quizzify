@@ -6,54 +6,66 @@
       <!-- Question -->
       <div class="form-group">
         <label for="question">Question</label>
-        <textarea id="question" formControlName="question" rows="3" placeholder="Enter the question text here..."></textarea>
-        <div class="error-msg" *ngIf="questionForm.get('question')?.touched && questionForm.get('question')?.invalid">
-          Question is required.
-        </div>
+        <textarea
+          id="question"
+          formControlName="question"
+          rows="3"
+          placeholder="Enter the question text here..."
+        ></textarea>
+        @if (questionForm.get('question')?.touched && questionForm.get('question')?.hasError('required')) {
+          <div class="error-msg">Question is required.</div>
+        }
+        @if (questionForm.get('question')?.touched && questionForm.get('question')?.hasError('whitespace') && !questionForm.get('question')?.hasError('required')) {
+          <div class="error-msg">Question cannot contain only whitespace.</div>
+        }
       </div>
 
       <div class="options-grid">
         <!-- Option A -->
         <div class="form-group">
           <label for="optionA">Option A</label>
-          <input type="text" id="optionA" formControlName="optionA" placeholder="Enter option A">
-          @if (questionForm.get('optionA')?.touched && questionForm.get('optionA')?.invalid) {
-            <div class="error-msg">
-              Option A is required.
-            </div>
+          <input type="text" id="optionA" formControlName="optionA" placeholder="Enter option A" />
+          @if (questionForm.get('optionA')?.touched && questionForm.get('optionA')?.hasError('required')) {
+            <div class="error-msg">Option A is required.</div>
+          }
+          @if (questionForm.get('optionA')?.touched && questionForm.get('optionA')?.hasError('whitespace') && !questionForm.get('optionA')?.hasError('required')) {
+            <div class="error-msg">Option A cannot contain only whitespace.</div>
           }
         </div>
 
         <!-- Option B -->
         <div class="form-group">
           <label for="optionB">Option B</label>
-          <input type="text" id="optionB" formControlName="optionB" placeholder="Enter option B">
-          @if (questionForm.get('optionB')?.touched && questionForm.get('optionB')?.invalid) {
-            <div class="error-msg">
-              Option B is required.
-            </div>
+          <input type="text" id="optionB" formControlName="optionB" placeholder="Enter option B" />
+          @if (questionForm.get('optionB')?.touched && questionForm.get('optionB')?.hasError('required')) {
+            <div class="error-msg">Option B is required.</div>
+          }
+          @if (questionForm.get('optionB')?.touched && questionForm.get('optionB')?.hasError('whitespace') && !questionForm.get('optionB')?.hasError('required')) {
+            <div class="error-msg">Option B cannot contain only whitespace.</div>
           }
         </div>
 
         <!-- Option C -->
         <div class="form-group">
           <label for="optionC">Option C</label>
-          <input type="text" id="optionC" formControlName="optionC" placeholder="Enter option C">
-          @if (questionForm.get('optionC')?.touched && questionForm.get('optionC')?.invalid) {
-            <div class="error-msg">
-              Option C is required.
-            </div>
+          <input type="text" id="optionC" formControlName="optionC" placeholder="Enter option C" />
+          @if (questionForm.get('optionC')?.touched && questionForm.get('optionC')?.hasError('required')) {
+            <div class="error-msg">Option C is required.</div>
+          }
+          @if (questionForm.get('optionC')?.touched && questionForm.get('optionC')?.hasError('whitespace') && !questionForm.get('optionC')?.hasError('required')) {
+            <div class="error-msg">Option C cannot contain only whitespace.</div>
           }
         </div>
 
         <!-- Option D -->
         <div class="form-group">
           <label for="optionD">Option D</label>
-          <input type="text" id="optionD" formControlName="optionD" placeholder="Enter option D">
-          @if (questionForm.get('optionD')?.touched && questionForm.get('optionD')?.invalid) {
-            <div class="error-msg">
-              Option D is required.
-            </div>
+          <input type="text" id="optionD" formControlName="optionD" placeholder="Enter option D" />
+          @if (questionForm.get('optionD')?.touched && questionForm.get('optionD')?.hasError('required')) {
+            <div class="error-msg">Option D is required.</div>
+          }
+          @if (questionForm.get('optionD')?.touched && questionForm.get('optionD')?.hasError('whitespace') && !questionForm.get('optionD')?.hasError('required')) {
+            <div class="error-msg">Option D cannot contain only whitespace.</div>
           }
         </div>
       </div>
@@ -68,16 +80,16 @@
           <option value="C">Option C</option>
           <option value="D">Option D</option>
         </select>
-        @if (questionForm.get('answer')?.touched && questionForm.get('answer')?.invalid) {
-          <div class="error-msg">
-            Correct answer is required.
-          </div>
+        @if (questionForm.get('answer')?.touched && questionForm.get('answer')?.hasError('required')) {
+          <div class="error-msg">Correct answer is required.</div>
         }
       </div>
 
       <!-- Submit Button -->
       <div class="form-actions">
-        <button type="submit" class="submit-btn" [disabled]="questionForm.invalid">Add Question</button>
+        <button type="submit" class="submit-btn" [disabled]="questionForm.invalid">
+          Add Question
+        </button>
       </div>
     </form>
   </div>

@@ -53,10 +53,7 @@ export class Login implements OnInit {
     this.auth.login(this.loginForm.value).subscribe({
       next: (res) => {
         this.spinner.hide();
-        this.toast.success('Login successful!', 'Success', {
-          timeOut: 5000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.success('Login successful!');
         const user = {
           id: res.id,
           role: res.role,
@@ -65,10 +62,7 @@ export class Login implements OnInit {
         this.route.navigate(['/layout/home']);
       },
       error: (err) => {
-        this.toast.error(err.error.message || 'Login failed. Please try again.', 'Error', {
-          timeOut: 5000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.error(err.error.message || 'Login failed. Please try again.');
         this.spinner.hide();
       },
     });

@@ -15,4 +15,8 @@ export class ApiService {
   get(endpoint: string): Observable<any> {
     return this.http.get(endpoint);
   }
+
+  delete(endpoint: string): Observable<any> {
+    return this.http.delete(endpoint);
+  }
 }

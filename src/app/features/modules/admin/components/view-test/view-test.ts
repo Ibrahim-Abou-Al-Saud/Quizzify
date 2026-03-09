@@ -38,18 +38,12 @@ export class ViewTest implements OnInit {
         console.log('Questions loaded:', response.questions);
         this.questions = response.questions;
         this.spinner.hide();
-        this.toast.success('Questions loaded successfully', 'Success', {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.success('Questions loaded successfully');
         this.cdr.detectChanges();
       },
       (error) => {
         this.spinner.hide();
-        this.toast.error('Failed to load questions', 'Error', {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.error('Failed to load questions');
       },
     );
   }

@@ -21,6 +21,9 @@
             @if (testForm.get('title')?.hasError('minlength')) {
               <mat-error>Test Name must be at least 3 characters</mat-error>
             }
+            @if (testForm.get('title')?.touched && testForm.get('title')?.hasError('whitespace') && !testForm.get('title')?.hasError('required')) {
+              <mat-error>Test Name cannot contain only whitespace</mat-error>
+            }
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="half-width">
@@ -55,6 +58,9 @@
           ></textarea>
           @if (testForm.get('description')?.touched && testForm.get('description')?.hasError('required')) {
             <mat-error>Description is required</mat-error>
+          }
+          @if (testForm.get('description')?.touched && testForm.get('description')?.hasError('whitespace') && !testForm.get('description')?.hasError('required')) {
+            <mat-error>Description cannot contain only whitespace</mat-error>
           }
         </mat-form-field>
 

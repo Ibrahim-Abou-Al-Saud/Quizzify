@@ -33,10 +33,7 @@ export class Header implements OnInit {
 
   logout() {
     UserStorage.signOut();
-    this.toast.success('Logged out successfully!', 'Success', {
-      timeOut: 3000,
-      positionClass: 'toast-top-center',
-    });
+    this.toast.success('Logged out successfully!');
     this.route.navigate(['/login']);
   }
 }

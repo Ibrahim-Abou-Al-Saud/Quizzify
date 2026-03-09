@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SpinnerService } from '../../../../../core/services/spinner-service';
 import { CreateTestService } from '../../services/create-test-service';
 import { ToastrService } from 'ngx-toastr';
+import { noWhitespaceValidator } from '../../../../../shared/validators/custom-validators';
 
 @Component({
   selector: 'app-create-test',
@@ -40,9 +41,9 @@ export class CreateTest implements OnInit {
   ) {}
   ngOnInit(): void {
     this.testForm = this.fb.group({
-      title: [null, [Validators.required, Validators.minLength(3)]],
+      title: [null, [Validators.required, Validators.minLength(3), noWhitespaceValidator()]],
       duration: [null, [Validators.required, Validators.min(1)]],
-      description: [null, [Validators.required]],
+      description: [null, [Validators.required, noWhitespaceValidator()]],
     });
   }
 
@@ -51,18 +52,12 @@ export class CreateTest implements OnInit {
     this.test.addTest(this.testForm.value).subscribe({
       next: (res) => {
         this.spinner.hide();
-        this.toast.success('Test created successfully!', 'Success', {
-          timeOut: 5000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.success('Test created successfully!');
         this.testForm.reset();
       },
       error: (err) => {
         this.spinner.hide();
-        this.toast.error('Failed to create test. Please try again.', 'Error', {
-          timeOut: 5000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.error('Failed to create test. Please try again.');
       },
     });
   }

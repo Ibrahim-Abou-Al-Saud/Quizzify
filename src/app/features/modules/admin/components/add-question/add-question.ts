@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { SpinnerService } from '../../../../../core/services/spinner-service';
 import { CreateTestService } from '../../services/create-test-service';
+import { noWhitespaceValidator } from '../../../../../shared/validators/custom-validators';
 
 @Component({
   selector: 'app-add-question',
@@ -26,12 +27,12 @@ export class AddQuestion implements OnInit {
 
   ngOnInit(): void {
     this.questionForm = this.fb.group({
-      question: [null, [Validators.required]],
-      optionA: [null, [Validators.required]],
-      optionB: [null, [Validators.required]],
-      optionC: [null, [Validators.required]],
-      optionD: [null, [Validators.required]],
-      answer: [null, [Validators.required]],
+      question: [null, [Validators.required, noWhitespaceValidator()]],
+      optionA: [null, [Validators.required, noWhitespaceValidator()]],
+      optionB: [null, [Validators.required, noWhitespaceValidator()]],
+      optionC: [null, [Validators.required, noWhitespaceValidator()]],
+      optionD: [null, [Validators.required, noWhitespaceValidator()]],
+      answer: [null, [Validators.required, noWhitespaceValidator()]],
     });
     this.id = this.activatedRoute.snapshot.params['id'];
   }
@@ -45,18 +46,12 @@ export class AddQuestion implements OnInit {
       this.createTestService.addQuestion(questionData).subscribe({
         next: (res) => {
           this.spinner.hide();
-          this.toast.success('Question added successfully!', 'Success', {
-              timeOut: 3000,
-              positionClass: 'toast-top-center',
-          });
+          this.toast.success('Question added successfully!');
           this.questionForm.reset();
         },
         error: (err) => {
           this.spinner.hide();
-          this.toast.error('Failed to add question. Please try again.', 'Error', {
-              timeOut: 3000,
-              positionClass: 'toast-top-center',
-          });
+          this.toast.error('Failed to add question. Please try again.');
         },
       });
     }

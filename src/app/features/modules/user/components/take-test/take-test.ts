@@ -51,10 +51,7 @@ export class TakeTest {
         this.cdr.detectChanges();
       } else {
         clearInterval(this.timerInterval);
-        this.toast.warning('Time is up! Submitting your test automatically.', 'Time Up', {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.warning('Time is up! Submitting your test automatically.');
         this.submitAnswers();
       }
     }, 1000);
@@ -77,18 +74,12 @@ export class TakeTest {
         this.startTimer();
 
         this.spinner.hide();
-        this.toast.success('Questions loaded successfully', 'Success', {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.success('Questions loaded successfully');
         this.cdr.detectChanges();
       },
       (error) => {
         this.spinner.hide();
-        this.toast.error('Failed to load questions', 'Error', {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.error('Failed to load questions');
       },
     );
   }
@@ -116,18 +107,12 @@ export class TakeTest {
     this.test.submitTest(submissionData).subscribe(
       (response) => {
         this.spinner.hide();
-        this.toast.success('Test submitted successfully', 'Success', {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.success('Test submitted successfully');
         this.router.navigateByUrl('layout/user/view-results');
       },
       (error) => {
         this.spinner.hide();
-        this.toast.error('Failed to submit test', 'Error', {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-        });
+        this.toast.error('Failed to submit test');
       },
     );
   }
