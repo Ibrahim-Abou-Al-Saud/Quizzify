@@ -27,7 +27,7 @@ export class Header implements OnInit {
     });
       this.links = [
         {name: 'Dashboard', path: `/layout/${this.adminOrUser}/dashboard`},
-        {name: 'Results', path: `/layout/${this.adminOrUser}/results`},
+        {name: 'Results', path: `/layout/${this.adminOrUser}/view-results`},
       ];
   }
 

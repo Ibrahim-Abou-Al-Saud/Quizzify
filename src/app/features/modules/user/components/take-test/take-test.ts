@@ -120,7 +120,7 @@ export class TakeTest {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-        this.router.navigateByUrl('layout/user/test-results');
+        this.router.navigateByUrl('layout/user/view-results');
       },
       (error) => {
         this.spinner.hide();

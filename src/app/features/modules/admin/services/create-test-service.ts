@@ -24,4 +24,8 @@ export class CreateTestService {
   getTestQuestions(id: number) {
     return this.api.get(`${environment.ServerandPort}/test/${id}`);
   }
+
+  getAllResults() {
+    return this.api.get(`${environment.ServerandPort}/test/results`);
+  }
 }
