@@ -21,7 +21,7 @@
             @if (testForm.get('title')?.hasError('minlength')) {
               <mat-error>Test Name must be at least 3 characters</mat-error>
             }
-            @if (testForm.get('title')?.touched && testForm.get('title')?.hasError('whitespace') && !testForm.get('title')?.hasError('required')) {
+            @if (testForm.get('title')?.hasError('whitespace')) {
               <mat-error>Test Name cannot contain only whitespace</mat-error>
             }
           </mat-form-field>
@@ -37,12 +37,16 @@
               placeholder="e.g. 60"
               min="0.5"
               step="0.5"
+              max="30"
             />
             @if (testForm.get('duration')?.touched && testForm.get('duration')?.hasError('required')) {
               <mat-error>Duration is required</mat-error>
             }
             @if (testForm.get('duration')?.hasError('min')) {
               <mat-error>Duration must be at least 0.5 minute</mat-error>
+            }
+            @if (testForm.get('duration')?.hasError('max')) {
+              <mat-error>Duration must be at most 30 minutes</mat-error>
             }
           </mat-form-field>
         </div>
@@ -60,7 +64,7 @@
           @if (testForm.get('description')?.touched && testForm.get('description')?.hasError('required')) {
             <mat-error>Description is required</mat-error>
           }
-          @if (testForm.get('description')?.touched && testForm.get('description')?.hasError('whitespace') && !testForm.get('description')?.hasError('required')) {
+          @if (testForm.get('description')?.hasError('whitespace')) {
             <mat-error>Description cannot contain only whitespace</mat-error>
           }
         </mat-form-field>
