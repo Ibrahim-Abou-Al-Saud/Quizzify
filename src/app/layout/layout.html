@@ -1,2 +1,14 @@
 <app-header />
 <router-outlet />
+<button
+  #button
+  mat-mini-fab
+  color="primary"
+  class="scroll-to-top-btn"
+  [class.show-btn]="showScrollBtn"
+  (click)="scrollToTop()"
+  matTooltip="scrollToTop"
+  matTooltipPosition="above"
+>
+  <mat-icon>arrow_upward</mat-icon>
+</button>
