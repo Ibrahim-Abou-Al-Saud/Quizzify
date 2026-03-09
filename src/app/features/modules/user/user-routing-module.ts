@@ -9,6 +9,7 @@ const routes: Routes = [
   {path: 'take-test/:id', component: TakeTest},
   {path: 'view-results', component: ViewResults},
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: '**', redirectTo: 'not-found', pathMatch: 'full'},
 ];
 
 @NgModule({

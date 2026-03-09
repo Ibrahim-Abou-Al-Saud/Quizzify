@@ -11,6 +11,13 @@
   margin-left: 6%;
 }
 
+@media (max-width: 768px) {
+  .header-section {
+    max-width: 100%;
+    margin-left: 0;
+  }
+}
+
 .header-section h2 {
   margin: 0 0 0.5rem;
   color: #1e293b;
@@ -33,6 +40,13 @@
   font-family: 'Poppins', sans-serif;
   max-width: 90%;
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    max-width: 100%;
+    margin: 0;
+  }
 }
 
 .results-table {

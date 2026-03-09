@@ -42,7 +42,7 @@ export class CreateTest implements OnInit {
   ngOnInit(): void {
     this.testForm = this.fb.group({
       title: [null, [Validators.required, Validators.minLength(3), noWhitespaceValidator()]],
-      duration: [null, [Validators.required, Validators.min(1)]],
+      duration: [null, [Validators.required, Validators.min(0)]],
       description: [null, [Validators.required, noWhitespaceValidator()]],
     });
   }

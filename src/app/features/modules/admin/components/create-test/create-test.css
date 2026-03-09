@@ -10,6 +10,14 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 991px) {
+  .create-test-container {
+    max-width: 95%;
+    padding: 15px;
+    margin: 15px auto;
+  }
+}
+
 .create-test-card {
   width: 100%;
   padding: 32px;

@@ -16,6 +16,13 @@
   max-width: 60%;
 }
 
+@media (max-width: 991px) {
+  .form-wrapper {
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+}
+
 .form-title {
   margin-bottom: 1.5rem;
   color: #2c3e50;
