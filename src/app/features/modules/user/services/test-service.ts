@@ -11,4 +11,8 @@ export class TestService {
   getTestQuestions(id: number) {
     return this.api.get(`${environment.ServerandPort}/test/${id}`);
   }
+
+  submitTest(data: any) {
+    return this.api.add(`${environment.ServerandPort}/test/submit`, data);
+  }
 }
