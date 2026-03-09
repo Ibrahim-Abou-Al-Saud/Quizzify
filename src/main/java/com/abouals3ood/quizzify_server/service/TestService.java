@@ -12,4 +12,6 @@ public interface TestService {
     TestDetailsDTO getAllQuestionsByTestId(Long id);
     TestResultDTO submitTest(SubmitedTestDTO submitedTestDTO);
     List<TestResultDTO> getAllTestResults();
+    List<TestResultDTO> getTestResultsByUserId(Long userId);
+    void deleteTest(Long id);
 }

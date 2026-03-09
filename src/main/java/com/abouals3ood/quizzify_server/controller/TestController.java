@@ -73,4 +73,23 @@ public class TestController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("results/{userId}")
+    public ResponseEntity<?> getTestResultsByUserId(@PathVariable Long userId) {
+        try {
+            return ResponseEntity.ok(testService.getTestResultsByUserId(userId));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTest(@PathVariable Long id) {
+        try {
+            testService.deleteTest(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

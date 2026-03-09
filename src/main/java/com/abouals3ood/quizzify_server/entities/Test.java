@@ -23,6 +23,9 @@ public class Test {
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
     private List<Question> questions;
 
+    @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
+    private List<TestResult> testResults;
+
     public TestDTO getDto() {
         TestDTO testDTO = new TestDTO();
         testDTO.setId(id);

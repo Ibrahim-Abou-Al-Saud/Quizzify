@@ -103,4 +103,12 @@ public class TestServiceImpl implements TestService {
     public List<TestResultDTO> getAllTestResults() {
         return testResultRepo.findAll().stream().map(TestResult::getDto).collect(Collectors.toList());
     }
+
+    public List<TestResultDTO> getTestResultsByUserId(Long userId) {
+        return testResultRepo.findAllByUserId(userId).stream().map(TestResult::getDto).collect(Collectors.toList());
+    }
+
+    public void deleteTest(Long id) {
+        testRepo.deleteById(id);
+    }
 }
