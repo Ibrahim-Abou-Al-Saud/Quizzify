@@ -110,9 +110,13 @@ mat-form-field {
 }
 
 .btn-clear {
-  color: rgb(112, 112, 184);
   font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+  height: 48px;
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: #1976d2;
 }
 
 .btn-submit {

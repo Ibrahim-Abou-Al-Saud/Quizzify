@@ -6,10 +6,11 @@ import { ToastrService } from 'ngx-toastr';
 import { SpinnerService } from '../../../../../core/services/spinner-service';
 import { CreateTestService } from '../../services/create-test-service';
 import { noWhitespaceValidator } from '../../../../../shared/validators/custom-validators';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-add-question',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, MatIcon],
   templateUrl: './add-question.html',
   styleUrl: './add-question.css',
 })

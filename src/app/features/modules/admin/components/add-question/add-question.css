@@ -80,7 +80,10 @@
 .form-actions {
   display: flex;
   justify-content: flex-end;
-  margin-top: 2rem;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid #edf2f7;
 }
 
 .submit-btn {
@@ -93,6 +96,17 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.btn-clear {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgb(112, 112, 184);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  border: 1px solid rgb(112, 112, 184);
+  padding: 0.65rem 1rem;
 }
 
 .submit-btn:hover {
