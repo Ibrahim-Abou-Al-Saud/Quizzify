@@ -4,6 +4,8 @@ import { Login } from './features/login/login';
 import { Layout } from './layout/layout';
 import { authGuard } from './core/guards/auth.guard';
 import { Home } from './features/home/home';
+import { adminGuard } from './core/guards/admin.guard';
+import { userGuard } from './core/guards/user.guard';
 
 export const routes: Routes = [
   {path: 'login', component: Login},
@@ -12,8 +14,8 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {path: 'home', component: Home},
-      {path: 'admin', loadChildren: () => import('./features/modules/admin/admin-routing-module').then(m => m.AdminRoutingModule)},
-      {path: 'user', loadChildren: () => import('./features/modules/user/user-routing-module').then(m => m.UserRoutingModule)},
+      {path: 'admin', loadChildren: () => import('./features/modules/admin/admin-routing-module').then(m => m.AdminRoutingModule), canActivate: [adminGuard]},
+      {path: 'user', loadChildren: () => import('./features/modules/user/user-routing-module').then(m => m.UserRoutingModule), canActivate: [userGuard]},
       {path: 'not-found', loadComponent: () => import('./shared/components/not-found/not-found').then(m => m.NotFound)},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'not-found', pathMatch: 'full'}

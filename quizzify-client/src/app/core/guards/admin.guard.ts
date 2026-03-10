@@ -2,13 +2,13 @@ import { CanActivateFn, Router } from '@angular/router';
 import { UserStorage } from '../services/user-storage';
 import { inject } from '@angular/core';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const adminGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
-  if (UserStorage.isAdminLoggedIn() || UserStorage.isUserLoggedIn()) {
+  if (UserStorage.isAdminLoggedIn()) {
     return true;
   }
 
-  router.navigate(['/login']);
+  router.navigate(['/layout/not-authorized']);
   return false;
 };
