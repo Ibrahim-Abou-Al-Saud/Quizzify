@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Signup } from './features/signup/signup';
 import { Login } from './features/login/login';
 import { Layout } from './layout/layout';
-import { authGuard } from './core/guards/auth-guard';
+import { authGuard } from './core/guards/auth.guard';
 import { Home } from './features/home/home';
 
 export const routes: Routes = [

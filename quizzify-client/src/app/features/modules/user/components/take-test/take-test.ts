@@ -16,9 +16,10 @@ import { UserStorage } from '../../../../../core/services/user-storage';
 export class TakeTest {
   questions: Question[] = [];
   testId!: number;
-  selectedAnswers: {[key: number]: string} = {};
+  selectedAnswers: { [key: number]: string } = {};
   timeRemaining: number = 0;
   timerInterval: any;
+  isSubmitted: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,7 +28,7 @@ export class TakeTest {
     private toast: ToastrService,
     private testService: CreateTestService,
     private cdr: ChangeDetectorRef,
-    private test: TestService
+    private test: TestService,
   ) {}
 
   ngOnInit() {
@@ -35,7 +36,6 @@ export class TakeTest {
       this.testId = +params['id'];
       this.loadQuestions();
     });
-
   }
 
   ngOnDestroy() {
@@ -103,6 +103,7 @@ export class TakeTest {
 
     console.log('Submitting answers:', submissionData);
 
+    this.isSubmitted = true;
     this.spinner.show();
     this.test.submitTest(submissionData).subscribe(
       (response) => {
@@ -115,5 +116,20 @@ export class TakeTest {
         this.toast.error('Failed to submit test');
       },
     );
+  }
+
+  canDeactivate(): boolean {
+    if (this.isSubmitted) {
+      return true;
+    }
+    const confirmLeave = confirm(
+      'If you leave, the test will be submitted automatically. Select OK to submit and leave, or Cancel to stay.',
+    );
+    if (confirmLeave) {
+      this.submitAnswers();
+      return true;
+    } else {
+      return false;
+    }
   }
 }

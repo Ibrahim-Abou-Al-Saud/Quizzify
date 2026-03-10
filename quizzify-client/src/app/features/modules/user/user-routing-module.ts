@@ -3,10 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { Dashboard } from '../../../shared/components/dashboard/dashboard';
 import { TakeTest } from './components/take-test/take-test';
 import { ViewResults } from './components/view-results/view-results';
+import { testDeactivateGuard } from '../../../core/guards/test-deactivate.guard';
 
 const routes: Routes = [
   {path: 'dashboard', component: Dashboard},
-  {path: 'take-test/:id', component: TakeTest},
+  {path: 'take-test/:id', component: TakeTest, canDeactivate: [testDeactivateGuard]},
   {path: 'view-results', component: ViewResults},
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: '**', redirectTo: 'not-found', pathMatch: 'full'},
