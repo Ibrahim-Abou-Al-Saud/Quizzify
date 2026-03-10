@@ -1,0 +1,32 @@
+.notauthorized-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.notauthorized-container h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.notauthorized-container p {
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .notauthorized-container h1 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
+  .notauthorized-container p {
+    font-size: 1.2rem;
+    margin-top: 30px;
+  }
+}
