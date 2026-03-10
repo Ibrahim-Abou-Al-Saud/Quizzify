@@ -1,3 +1,7 @@
+.main-content {
+  padding-top: 64px;
+}
+
 .scroll-to-top-btn {
   position: fixed;
   bottom: 20px;
