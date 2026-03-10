@@ -1,0 +1,53 @@
+<div class="test-container">
+  <div class="test-header">
+    <h1>Test Questions</h1>
+    <div class="test-meta">
+      <span class="question-count">{{ questions.length }} Questions</span>
+      <span class="timer" [class.warning]="timeRemaining < 60">Time Remaining: {{ formattedTime }}</span>
+    </div>
+  </div>
+
+  <div class="questions-list">
+    @for (question of questions; track question.id; let i = $index) {
+      <div class="question-card">
+        <div class="question-header">
+          <span class="question-number">Question {{ i + 1 }}</span>
+          <h3 class="question-text">{{ question.question }}</h3>
+        </div>
+
+        <div class="options-grid">
+          <label class="option" [class.correct-option]="question.answer === 'A'">
+            <input type="radio" name="question-{{i}}" value="A" (change)="onAnswerChange(question.id, 'A')">
+            <span class="option-label">A</span>
+            <span class="option-value">{{ question.optionA }}</span>
+          </label>
+          <label class="option" [class.correct-option]="question.answer === 'B'">
+            <input type="radio" name="question-{{i}}" value="B" (change)="onAnswerChange(question.id, 'B')">
+            <span class="option-label">B</span>
+            <span class="option-value">{{ question.optionB }}</span>
+          </label>
+          <label class="option" [class.correct-option]="question.answer === 'C'">
+            <input type="radio" name="question-{{i}}" value="C" (change)="onAnswerChange(question.id, 'C')">
+            <span class="option-label">C</span>
+            <span class="option-value">{{ question.optionC }}</span>
+          </label>
+          <label class="option" [class.correct-option]="question.answer === 'D'">
+            <input type="radio" name="question-{{i}}" value="D" (change)="onAnswerChange(question.id, 'D')">
+            <span class="option-label">D</span>
+            <span class="option-value">{{ question.optionD }}</span>
+          </label>
+        </div>
+      </div>
+    } @empty {
+      <div class="no-questions">
+        <p>No questions found for this test.</p>
+      </div>
+    }
+  </div>
+
+  @if (questions.length > 0) {
+    <div class="test-actions" style="margin-top: 2rem; text-align: center;">
+      <button class="submit-btn" type="submit" (click)="submitAnswers()">Submit Test</button>
+    </div>
+  }
+</div>

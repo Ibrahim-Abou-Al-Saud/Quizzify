@@ -1,0 +1,41 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 3em;
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.quizzify-logo {
+  width: 250px;
+  height: auto;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.home-content {
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: #555;
+  text-align: start;
+  max-width: 90%;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+  .home-content {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}

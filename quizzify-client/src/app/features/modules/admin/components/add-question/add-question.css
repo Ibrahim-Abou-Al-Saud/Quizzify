@@ -1,0 +1,126 @@
+.add-question-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #ffffff;
+  min-height: calc(100vh - 65px);
+}
+
+.form-wrapper {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 60%;
+}
+
+@media (max-width: 991px) {
+  .form-wrapper {
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+}
+
+.form-title {
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #34495e;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #dce1e6;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #2c3e50;
+  transition: border-color 0.3s ease;
+  background-color: #d7d7d767;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3498db;
+  background-color: white;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.error-msg {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid #edf2f7;
+}
+
+.submit-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-clear {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgb(112, 112, 184);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  border: 1px solid rgb(112, 112, 184);
+  padding: 0.65rem 1rem;
+}
+
+.submit-btn:hover {
+  background-color: #2980b9;
+}
+
+.submit-btn:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .options-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

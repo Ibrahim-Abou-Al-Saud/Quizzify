@@ -1,0 +1,11 @@
+<header class="d-flex justify-content-between align-items-center p-2 bg-light shadow">
+  <div>
+    <img src="assets/images/dark-logo.png" alt="Quizzify Logo" class="logo ms-2" width="125" routerLink="/layout/home"/>
+  </div>
+  <div class="nav-links">
+    @for (link of links; track link.name) {
+      <a [routerLink]="link.path" routerLinkActive="active-link">{{ link.name }}</a>
+    }
+    <a (click)="logout()">Logout</a>
+  </div>
+</header>

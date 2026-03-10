@@ -1,0 +1,151 @@
+.results-container {
+  padding: 2rem;
+  background-color: #f8fafc;
+  min-height: calc(100vh - 65px);
+  font-family: 'Poppins', sans-serif;
+}
+
+.header-section {
+  margin-bottom: 2rem;
+  max-width: 90%;
+  margin-left: 6%;
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    max-width: 100%;
+    margin-left: 0;
+  }
+}
+
+.header-section h2 {
+  margin: 0 0 0.5rem;
+  color: #1e293b;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.header-section p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.table-responsive {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  font-family: 'Poppins', sans-serif;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .table-responsive {
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.results-table th,
+.results-table td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem !important;
+}
+
+.results-table th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.results-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.results-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+.results-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.student-name {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.text-center {
+  text-align: center;
+}
+
+::ng-deep th.text-center .mat-sort-header-container {
+  justify-content: center;
+}
+
+.mat-column-totalQuestions,
+.mat-column-correctAnswers,
+.mat-column-percentage {
+  text-align: center !important;
+}
+
+.font-bold {
+  font-weight: 600;
+}
+
+.pass-score {
+  color: #16a34a;
+}
+
+.fail-score {
+  color: #dc2626;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.pass {
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.status-badge.fail {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem !important;
+}
+
+.empty-state-content p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 1rem;
+}
