@@ -1,6 +1,5 @@
 package com.abouals3ood.quizzify_server.entities;
 
-import com.abouals3ood.quizzify_server.dto.TestResultDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,15 +24,4 @@ public class TestResult {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    public TestResultDTO getDto() {
-        TestResultDTO testResultDTO = new TestResultDTO();
-        testResultDTO.setId(id);
-        testResultDTO.setTotalQuestions(totalQuestions);
-        testResultDTO.setCorrectAnswers(correctAnswers);
-        testResultDTO.setPercentage(percentage);
-        testResultDTO.setTestName(test.getTitle());
-        testResultDTO.setUserName(user.getName());
-        return testResultDTO;
-    }
 }

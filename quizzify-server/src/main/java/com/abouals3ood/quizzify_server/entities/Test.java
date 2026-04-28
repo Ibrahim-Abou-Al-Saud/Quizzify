@@ -1,6 +1,5 @@
 package com.abouals3ood.quizzify_server.entities;
 
-import com.abouals3ood.quizzify_server.dto.TestDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,13 +24,4 @@ public class Test {
 
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
     private List<TestResult> testResults;
-
-    public TestDTO getDto() {
-        TestDTO testDTO = new TestDTO();
-        testDTO.setId(id);
-        testDTO.setTitle(title);
-        testDTO.setDescription(description);
-        testDTO.setDuration(duration);
-        return testDTO;
-    }
 }

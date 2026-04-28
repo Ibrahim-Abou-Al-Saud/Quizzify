@@ -1,6 +1,5 @@
 package com.abouals3ood.quizzify_server.entities;
 
-import com.abouals3ood.quizzify_server.dto.QuestionDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -27,16 +26,4 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "test_id")
     private Test test;
-
-    public QuestionDTO getDto() {
-        QuestionDTO questionDTO = new QuestionDTO();
-        questionDTO.setId(id);
-        questionDTO.setQuestion(question);
-        questionDTO.setOptionA(optionA);
-        questionDTO.setOptionB(optionB);
-        questionDTO.setOptionC(optionC);
-        questionDTO.setOptionD(optionD);
-        questionDTO.setAnswer(answer);
-        return questionDTO;
-    }
 }

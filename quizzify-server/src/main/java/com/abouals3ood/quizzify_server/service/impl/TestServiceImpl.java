@@ -5,6 +5,9 @@ import com.abouals3ood.quizzify_server.entities.Question;
 import com.abouals3ood.quizzify_server.entities.Test;
 import com.abouals3ood.quizzify_server.entities.TestResult;
 import com.abouals3ood.quizzify_server.entities.User;
+import com.abouals3ood.quizzify_server.mapper.QuestionsMapper;
+import com.abouals3ood.quizzify_server.mapper.TestMapper;
+import com.abouals3ood.quizzify_server.mapper.TestResultMapper;
 import com.abouals3ood.quizzify_server.repo.QuestionRepo;
 import com.abouals3ood.quizzify_server.repo.TestRepo;
 import com.abouals3ood.quizzify_server.repo.TestResultRepo;
@@ -15,8 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class TestServiceImpl implements TestService {
@@ -25,53 +26,53 @@ public class TestServiceImpl implements TestService {
     private final UserRepo userRepo;
     private final QuestionRepo questionRepo;
     private final TestResultRepo testResultRepo;
+    private final TestMapper testMapper;
+    private final QuestionsMapper questionsMapper;
+    private final TestResultMapper testResultMapper;
 
     @Autowired
-    public TestServiceImpl(TestRepo testRepo, QuestionRepo questionRepo, UserRepo userRepo, TestResultRepo testResultRepo) {
+    public TestServiceImpl(TestRepo testRepo, QuestionRepo questionRepo, UserRepo userRepo, TestResultRepo testResultRepo,
+                           TestMapper testMapper, QuestionsMapper questionsMapper, TestResultMapper testResultMapper) {
         this.testRepo = testRepo;
         this.questionRepo = questionRepo;
         this.userRepo = userRepo;
         this.testResultRepo = testResultRepo;
+        this.testMapper = testMapper;
+        this.questionsMapper = questionsMapper;
+        this.testResultMapper = testResultMapper;
     }
 
     @Override
     public TestDTO createTest(TestDTO dto) {
-        Test test = new Test();
-        test.setTitle(dto.getTitle());
-        test.setDescription(dto.getDescription());
-        test.setDuration(dto.getDuration());
-        return testRepo.save(test).getDto();
+        Test test = testMapper.toEntity(dto);
+        return testMapper.toDto(testRepo.save(test));
     }
 
     @Override
     public QuestionDTO createQuestion(QuestionDTO questionDTO) {
-        Optional<Test> testOptional = testRepo.findById(questionDTO.getId());
-        if (testOptional.isPresent()) {
-            Question question = new Question();
+        Test test = testRepo.findById(questionDTO.getId()).orElseThrow(() -> new EntityNotFoundException("Test not found"));
 
-            question.setTest(testOptional.get());
-            question.setQuestion(questionDTO.getQuestion());
-            question.setOptionA(questionDTO.getOptionA());
-            question.setOptionB(questionDTO.getOptionB());
-            question.setOptionC(questionDTO.getOptionC());
-            question.setOptionD(questionDTO.getOptionD());
-            question.setAnswer(questionDTO.getAnswer());
-            return questionRepo.save(question).getDto();
-        }
-        throw new EntityNotFoundException("Test not found");
+        Question question = questionsMapper.toEntity(questionDTO);
+        question.setId(null);
+        question.setTest(test);
+        return questionsMapper.toDto(questionRepo.save(question));
     }
 
     public List<TestDTO> getTests() {
-        return testRepo.findAll().stream().peek(test -> test.setDuration(test.getQuestions().size() * test.getDuration())).map(Test::getDto).collect(Collectors.toList());
+        return testRepo.findAll().stream().map(test -> {
+            TestDTO testDTO = testMapper.toDto(test);
+            testDTO.setDuration(getCalculatedDuration(test));
+            return testDTO;
+        }).toList();
     }
 
     public TestDetailsDTO getAllQuestionsByTestId(Long id) {
         Test test = testRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Test not found"));
-        TestDTO testDTO = test.getDto();
-        testDTO.setDuration(test.getDuration() * test.getQuestions().size());
+        TestDTO testDTO = testMapper.toDto(test);
+        testDTO.setDuration(getCalculatedDuration(test));
         TestDetailsDTO testDetails = new TestDetailsDTO();
         testDetails.setTestDTO(testDTO);
-        testDetails.setQuestions(test.getQuestions().stream().map(Question::getDto).collect(Collectors.toList()));
+        testDetails.setQuestions(questionsMapper.toDtoList(test.getQuestions()));
         return testDetails;
     }
 
@@ -87,8 +88,8 @@ public class TestServiceImpl implements TestService {
             }
         }
 
-        int totalQuestions = test.getQuestions().size();
-        double percentage = (double) correctAnswers / totalQuestions * 100;
+        int totalQuestions = getQuestionCount(test);
+        double percentage = totalQuestions == 0 ? 0 : (double) correctAnswers / totalQuestions * 100;
 
         TestResult testResult = new TestResult();
         testResult.setTest(test);
@@ -97,18 +98,26 @@ public class TestServiceImpl implements TestService {
         testResult.setCorrectAnswers(correctAnswers);
         testResult.setPercentage(percentage);
 
-        return testResultRepo.save(testResult).getDto();
+        return testResultMapper.toDto(testResultRepo.save(testResult));
     }
 
     public List<TestResultDTO> getAllTestResults() {
-        return testResultRepo.findAll().stream().map(TestResult::getDto).collect(Collectors.toList());
+        return testResultMapper.toDtoList(testResultRepo.findAll());
     }
 
     public List<TestResultDTO> getTestResultsByUserId(Long userId) {
-        return testResultRepo.findAllByUserId(userId).stream().map(TestResult::getDto).collect(Collectors.toList());
+        return testResultMapper.toDtoList(testResultRepo.findAllByUserId(userId));
     }
 
     public void deleteTest(Long id) {
         testRepo.deleteById(id);
+    }
+
+    private float getCalculatedDuration(Test test) {
+        return test.getDuration() * getQuestionCount(test);
+    }
+
+    private int getQuestionCount(Test test) {
+        return test.getQuestions() == null ? 0 : test.getQuestions().size();
     }
 }
